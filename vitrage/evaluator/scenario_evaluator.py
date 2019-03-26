@@ -25,3 +25,15 @@
                                           match_action_spec_transform.id, match_hash))
 
         return actions
+
+    
+        def _get_action_spec(action_spec, match):
+        targets = action_spec.targets
+        properties = copy.deepcopy(action_spec.properties)
+        real_items = {
+            target: match[target_id] for target, target_id in targets.items()
+        }
+        return ActionSpecs(action_spec.id,
+                           action_spec.type,
+                           real_items,
+                           properties)
